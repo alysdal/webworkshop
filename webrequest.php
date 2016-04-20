@@ -1,37 +1,20 @@
 <?php
 
 // db connection
-require('connect.php');
+require_once('connect.php');
+require_once('functions.php');
 
-$sql = "SELECT * FROM sensors ORDER BY timestamp DESC";
-
-$sth = $db->prepare($sql);
-//$sth->bindValue(':id', '2');
-$sth->execute();
-
-$results = $sth->fetchAll();
 
 $url = "http://localhost/sensordata.php"; // test
 
 $data = file_get_contents($url);
 $requestObject = json_decode($data);
 
-function saveSensorData($name, $value, $timestamp) {
-    global $db;
-    $sql = "INSERT INTO sensors (id, name, value, timestamp) VALUES (NULL, :name, :value, :timestamp)";
-    $sth = $db->prepare($sql);
-
-    // bind values to the SQL statement
-    $sth->bindValue(':name', $name);
-    $sth->bindValue(':value', $value);
-    $sth->bindValue(':timestamp', $timestamp);
-
-    $sth->execute();
-}
-
-saveSensorData($requestObject->name, $requestObject->value, $requestObject->timestamp);
+//saveSensorData($requestObject->name, $requestObject->value, $requestObject->timestamp);
 
 var_dump($requestObject);
+
+$results = getSensorData("chomsky");
 
 ?>
 
@@ -43,7 +26,7 @@ var_dump($requestObject);
     <script src="https://cdnjs.com/libraries/chart.js"></script>
     <style>
         body {
-            margin: 0 30px;
+            margin: 30px 30px;
         }
         td {
             border: 1px solid grey;
