@@ -1,8 +1,8 @@
 <?php
 
 // db connection
-require_once('connect.php');
-require_once('functions.php');
+require('connect.php');
+require('functions.php');
 
 
 $url = "http://localhost/sensordata.php"; // test
