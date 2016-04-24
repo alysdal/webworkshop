@@ -1,5 +1,5 @@
 <?php
-require_once("connect.php");
+require_once("dbconnection.php");
 
 /**
  * Get sensor data from specific sensor
@@ -7,13 +7,20 @@ require_once("connect.php");
  * @return array
  */
 function getSensorData($name) {
+    // use global variable defined in dbconnection.php
     global $db;
-    $sql = "SELECT * FROM sensors WHERE name = :name ORDER BY timestamp DESC";
 
+    // this sql statement contains a placeholder for the variable $name (:name)
+    $sql = "SELECT * FROM sensors WHERE name = :name ORDER BY timestamp DESC";
     $sth = $db->prepare($sql);
+
+    // bind values to the SQL statement
     $sth->bindValue(':name', $name);
+
+    // execute the sql statement
     $sth->execute();
 
+    // get the result in array format.
     $results = $sth->fetchAll();
 
     return $results;
@@ -27,7 +34,9 @@ function getSensorData($name) {
  * @param $timestamp
  */
 function saveSensorData($name, $value, $timestamp) {
+    // use global variable defined in dbconnection.php
     global $db;
+
     $sql = "INSERT INTO sensors (id, name, value, timestamp) VALUES (NULL, :name, :value, :timestamp)";
     $sth = $db->prepare($sql);
 
@@ -36,5 +45,6 @@ function saveSensorData($name, $value, $timestamp) {
     $sth->bindValue(':value', $value);
     $sth->bindValue(':timestamp', $timestamp);
 
+    // execute the sql statement
     $sth->execute();
 }

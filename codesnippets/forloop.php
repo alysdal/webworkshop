@@ -22,8 +22,11 @@ for ($i=1; $i <= 10; $i++) {
 <?php
 
 function addNumbers($a, $b) {
-    
+    return $a + $b;
 }
+
+echo "3 + 4 = " . addNumbers(3, 4);
+// 3 + 4 = 7
 ?>
 
 

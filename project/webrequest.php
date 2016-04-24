@@ -1,11 +1,11 @@
 <?php
 
 // db connection
-require('connect.php');
-require('functions.php');
+require_once('dbconnection.php');
+require_once('functions.php');
 
 
-$url = "http://localhost/sensordata.php"; // test
+$url = "http://localhost/project/sensordata.php"; // test
 
 $data = file_get_contents($url);
 $requestObject = json_decode($data);

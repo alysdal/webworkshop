@@ -1,0 +1,2 @@
+<br>
+&copy; Example.com
