@@ -1,7 +1,5 @@
 <?php
 
-
-
 // device info
 $deviceID = "390024001347343338333633";
 $accessToken = "fa2405080d01b918e0574a0f23a0b06c64332305";
@@ -14,7 +12,7 @@ $url = "https://api.particle.io/v1/devices/".$deviceID."/".$command."?access_tok
 /**
  * Do a POST requests
  * @param string $url
- * @param Array $data
+ * @param string $data
  * @return string
  */
 function makePostRequest($url, $data) {
@@ -52,22 +50,23 @@ function makePostRequest($url, $data) {
     <input type="radio" name="color" value="0,0,255"> Blue
     <input type="radio" name="color" value="0,255,0"> Green
     <input type="radio" name="color" value="255,0,0"> Red<br>
-    <input type="text" name="custom" value=""> Custom<br>
     <input type="submit" value="Update led">
 </form>
 
 <h3>Output</h3>
-<pre>
     <?php
-if (isset($_POST['color']) || ! empty($_POST['custom'])) {
-    $color = ! empty($_POST['custom']) ? $_POST['custom'] : $_POST['color'];
-    // update led color
-    $data = ['args' => $color];
-    echo "<pre>";
-    echo makePostRequest($url, $data);
-    echo "</pre>";
-}
+    // check if POST data has been submitted
+    if (isset($_POST['color'])) {
+        $color = $_POST['color'];
+
+        // photon forventer et parameter kaldet "args" med værdien.
+        $data = [];
+        $data['args'] = $color;
+
+        $response = makePostRequest($url, $data);
+
+        var_dump($response);
+    }
     ?>
-</pre>
 </body>
 </html>

@@ -1,13 +1,8 @@
 <?php
 
-// device info
-$deviceID = "390024001347343338333633";
-$accessToken = "fa2405080d01b918e0574a0f23a0b06c64332305";
-
-// name of variable exposed from Photon
-$command = "light";
-
-$url = "https://api.particle.io/v1/devices/".$deviceID."/".$command."?access_token=".$accessToken;
+// API address
+//                                                DEVICE ID          CMD                             ACCESS TOKEN
+$url = "https://api.particle.io/v1/devices/390024001347343338333633/light?access_token=fa2405080d01b918e0574a0f23a0b06c64332305";
 
 $resultString = file_get_contents($url);
 
@@ -30,7 +25,10 @@ $resultString = file_get_contents($url);
 // check if result
 if ($resultString) {
     $resultObject = json_decode($resultString);
-    var_dump($resultString);
+
+    //var_dump($resultObject);
+
+    var_dump($resultObject['results']);
 }
 
 ?>
@@ -47,6 +45,5 @@ if ($resultString) {
     }
 </style>
 <h3>Sensor værdi</h3>
-
 </body>
 </html>

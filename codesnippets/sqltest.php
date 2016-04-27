@@ -4,7 +4,7 @@ require_once("dbconnection.php");
 
 $name = 'Chomsky';
 $value = 800; // light intensity
-$timestamp = date("Y-m-d g:i:s", time()); // formated date like 2016-04-20 12:00:00
+$timestamp = date("Y-m-d g:i:s", time()); // formatted date like 2016-04-20 12:00:00
 
 $sql = "INSERT INTO sensors (id, name, value, timestamp) VALUES (NULL, :name, :value, :timestamp)";
 $statement = $db->prepare($sql);
@@ -32,4 +32,14 @@ $sth->execute();
 $results = $sth->fetchAll();
 
 ?>
-MySQL Test
+Select test
+<ul>
+<?php
+foreach ($results as $row) {
+    ?>
+        <li><?php echo $row['timestamp']; ?>: <?php echo $row['name']; ?>  lysintensitet: <?php echo $row['value']; ?></li>
+    <?php
+}
+
+?>
+</ul>

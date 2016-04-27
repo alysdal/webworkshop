@@ -1,11 +1,7 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
+<?php
 
+$response = file_get_contents("http://www.facebook.com");
 
+echo $response;
 
-</body>
-</html>
+?>

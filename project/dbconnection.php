@@ -14,6 +14,7 @@ try
     // attempt to connect to the database
     $db = new PDO($dbType . ':host=' . $dbHost . ';dbname=' . $dbName . ';charset=' . $dbChar, $dbUser, $dbPass);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING ); // show warnings, useful for debugging
 }
 catch(Exception $e)
 {

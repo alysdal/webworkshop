@@ -7,7 +7,7 @@ require_once('functions.php');
 
 $url = "http://localhost/project/sensordata.php"; // test
 
-$data = file_get_contents($url);
+$data = file_get_contents($url); // get request
 $requestObject = json_decode($data);
 
 //saveSensorData($requestObject->name, $requestObject->value, $requestObject->timestamp);
