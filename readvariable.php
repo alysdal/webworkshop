@@ -7,10 +7,10 @@ $url = "https://api.particle.io/v1/devices/390024001347343338333633/light?access
 // download from url
 $resultString = file_get_contents($url);
 
-// check if result
-if ($resultString) {
-    $resultObject = json_decode($resultString);
-    var_dump($resultObject);
-}
+
+$resultObject = json_decode($resultString);
+
+echo $resultObject->result;
+
 
 ?>

@@ -49,12 +49,15 @@ function makePostRequest($url, $data) {
 <form action="" method="POST">
     <input type="radio" name="color" value="0,0,255"> Blue
     <input type="radio" name="color" value="0,255,0"> Green
-    <input type="radio" name="color" value="255,0,0"> Red<br>
+    <input type="radio" name="color" value="255,0,0"> Red
+    <input type="radio" name="color" value="0,0,0"> Sluk<br>
     <input type="submit" value="Update led">
 </form>
 
 <h3>Output</h3>
+
     <?php
+
     // check if POST data has been submitted
     if (isset($_POST['color'])) {
         $color = $_POST['color'];
@@ -63,10 +66,12 @@ function makePostRequest($url, $data) {
         $data = [];
         $data['args'] = $color;
 
+        // send post request og læs svar.
         $response = makePostRequest($url, $data);
 
         var_dump($response);
     }
     ?>
+
 </body>
 </html>
